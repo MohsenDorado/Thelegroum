@@ -12,7 +12,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 
-const AuthForm = () => {
+const  AuthForm = () => {
   const session=useSession();
   const router=useRouter();
 
@@ -152,7 +152,7 @@ const AuthForm = () => {
           <div>
             {variant === "LOGIN"
               ? "New to Thelegroum ?!!"
-              : "Aready on of us?!!"}
+              : "Already one of us?!!"}
           </div>
           <div
             onClick={toggleVariant}
