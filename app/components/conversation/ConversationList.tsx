@@ -10,14 +10,17 @@ import clsx from "clsx";
 import useConversation from "../../hooks/useConversation";
 import { FullConversationType } from "../../types";
 import ConversationBox from "./ConversationBox";
+import GroupChatModal from "./GroupChatModal";
 
 interface ConversationListProps {
   initialItems: FullConversationType[];
+  users:User[]
 
 }
 
 const ConversationList: React.FC<ConversationListProps> = ({
   initialItems,
+  users
 }) => {
   const [items, setItems] = useState(initialItems);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -68,6 +71,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
 
   return (
     <>
+    <GroupChatModal users={users} isOpen={isModalOpen} onClose={()=>setIsModalOpen(false)}/>
       <aside
         className={clsx(
           `
