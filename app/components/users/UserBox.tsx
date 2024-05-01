@@ -4,6 +4,10 @@ import { useRouter } from "next/navigation";
 import {  User } from "@prisma/client";
 
 
+
+
+import Avatar from "../Avatar";
+
 interface UserBoxProps {
   data: User
 }
@@ -43,6 +47,7 @@ const UserBox: React.FC<UserBoxProps> = ({
           cursor-pointer
         "
       >
+        <Avatar user={data} />
         <div className="min-w-0 flex-1">
           <div className="focus:outline-none">
             <span className="absolute inset-0" aria-hidden="true" />

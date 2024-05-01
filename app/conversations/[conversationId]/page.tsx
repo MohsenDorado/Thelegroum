@@ -37,7 +37,7 @@ interface IParams {
                 
                 
             <Header conversation={conversation}    />  
-            <Body/>      
+            <Body initialMessages={messages}/>      
             <Form/>
             
             </div>

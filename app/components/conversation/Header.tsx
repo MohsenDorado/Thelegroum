@@ -14,6 +14,7 @@ import { Conversation, User } from "@prisma/client";
 
 import useOtherUser from '../../hooks/useOtherUser';
 import Avatar from '../Avatar';
+import ProfileDrawer from './ProfileDrawer';
 
 interface HeaderProps {
   conversation: Conversation & {
@@ -37,11 +38,11 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
 
   return (
   <>
-    {/* <ProfileDrawer 
+    <ProfileDrawer 
       data={conversation} 
       isOpen={drawerOpen} 
       onClose={() => setDrawerOpen(false)}
-    /> */}
+    /> 
     <div 
       className="
         bg-white 
