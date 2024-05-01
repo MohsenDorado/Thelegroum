@@ -1,7 +1,6 @@
 import React from 'react'
 import { User } from '@prisma/client'
 import Image from 'next/image'
-import Link from 'next/link'
 
 
 
