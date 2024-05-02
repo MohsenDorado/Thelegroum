@@ -7,12 +7,11 @@ import { Conversation, User } from '@prisma/client';
 import { format } from 'date-fns';
 
 
-
 import ConfirmModal from './ConfirmModal';
 import useOtherUser from '../../hooks/useOtherUser';
-import Avatar from '../Avatar';
+import useActiveList from '../../hooks/useActiveList';
 import AvatarGroup from '../AvatarGroup';
-import GroupMember from './GroupMember';
+import Avatar from '../Avatar';
 
 interface ProfileDrawerProps {
   isOpen: boolean;
@@ -38,15 +37,15 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
     return data.name || otherUser.name;
   }, [data.name, otherUser.name]);
 
-  // const { members } = useActiveList();
-   let isActive=""
+  const { members } = useActiveList();
+  const isActive = members.indexOf(otherUser?.email!) !== -1;
 
   const statusText = useMemo(() => {
     if (data.isGroup) {
       return `${data.users.length} members`;
     }
 
-    return isActive ="Active"
+    return isActive ? 'Active' : 'Offline'
   }, [data, isActive]);
 
   return (
@@ -100,7 +99,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                       <div className="relative mt-6 flex-1 px-4 sm:px-6">
                         <div className="flex flex-col items-center">
                           <div className="mb-2">
-                          {data.isGroup?(<AvatarGroup users={data.users}/>):(      <Avatar user={otherUser} />)}
+                            {data.isGroup ? <AvatarGroup users={data.users} /> : <Avatar user={otherUser} />}
                           </div>
                           <div>
                             {title}
@@ -131,7 +130,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                   sm:flex-shrink-0
                                 "
                               >
-                                Members
+                                Emails
                               </dt>
                               <dd 
                                 className="
@@ -141,7 +140,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                   sm:col-span-2
                                 "
                               >
-                                {data.users.map((user) => <GroupMember data={user}/>)}
+                                {data.users.map((user) => user.email).join(', ')}
                               </dd>
                             </div>
                           )}
