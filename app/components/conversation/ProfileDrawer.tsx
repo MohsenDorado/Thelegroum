@@ -12,6 +12,7 @@ import useOtherUser from '../../hooks/useOtherUser';
 import useActiveList from '../../hooks/useActiveList';
 import AvatarGroup from '../AvatarGroup';
 import Avatar from '../Avatar';
+import GroupMember from './GroupMember';
 
 interface ProfileDrawerProps {
   isOpen: boolean;
@@ -130,7 +131,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                   sm:flex-shrink-0
                                 "
                               >
-                                Emails
+                                Members
                               </dt>
                               <dd 
                                 className="
@@ -140,7 +141,7 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
                                   sm:col-span-2
                                 "
                               >
-                                {data.users.map((user) => user.email).join(', ')}
+                                {data.users.map((user) => <GroupMember data={user}/>)}
                               </dd>
                             </div>
                           )}
